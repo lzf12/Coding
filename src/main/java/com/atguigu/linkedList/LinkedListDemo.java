@@ -28,8 +28,21 @@ public class LinkedListDemo {
       linkedList.addNodeByOrder(node2);
       linkedList.addNodeByOrder(node4);
       linkedList.addNodeByOrder(node1);
-      linkedList.addNodeByOrder(node3);
       linkedList.list();
+      System.out.println();
+      HeronNode deleteNode1 = HeronNode.builder().no(1).build();
+      HeronNode deleteNode2 = HeronNode.builder().no(2).build();
+      HeronNode deleteNode3 = HeronNode.builder().no(3).build();
+      HeronNode deleteNode4 = HeronNode.builder().no(4).build();
+      HeronNode deleteNode5 = HeronNode.builder().no(5).build();
+      /*linkedList.deleteNode(deleteNode1);
+      linkedList.deleteNode(deleteNode2);
+      linkedList.deleteNode(deleteNode3);
+      linkedList.list();*/
+      System.out.println(SingleLinkedList.getLength(linkedList.getHeadNode()));
+      HeronNode lastIndexNode = SingleLinkedList.findLastIndexNode(linkedList.getHeadNode(), 1);
+      System.out.println(lastIndexNode);
+
    }
 
 }
@@ -57,17 +70,24 @@ class HeronNode {
 
 class SingleLinkedList {
    // 初始化一个头节点, 不带数据
-   private final HeronNode head = HeronNode.builder().no(0).build();
+   private  HeronNode head = HeronNode.builder().no(0).build();
 
+   /**
+    * 获取链表头节点
+    * @return 链表头节点
+    */
+   public HeronNode getHeadNode() {
+      return head;
+   }
    /**
     * 添加节点
     */
    public void addNode(HeronNode node) {
       HeronNode temp = head;
-      while (temp.getNext() != null) {
+      while (temp.next != null) {
          temp = temp.next;
       }
-      // 说明temp已经指向链表的最后一个元素
+      // 说明temp已经指向链表的最后一个元素, 直接添加节点到最后
       temp.next = node;
    }
 
@@ -104,5 +124,116 @@ class SingleLinkedList {
          System.out.println(temp);
          temp = temp.next;
       }
+   }
+
+   /**
+    * 修改节点
+    */
+   public void updateNode(HeronNode heronNode) {
+        HeronNode temp = head;
+        boolean flag = false;
+        while(true) {
+           if (temp.next == null) {
+              break;
+           }
+           if (temp.next.no == heronNode.no) {
+              temp.next.name = heronNode.name;
+              temp.next.nickName = heronNode.nickName;
+              flag =  true;
+              break;
+           }
+           temp = temp.next;
+        }
+
+        if (!flag) {
+           System.out.printf("修改记录不存在no为%d\n", heronNode.no);
+        }
+   }
+
+   /**
+    * 删除节点
+    */
+   public void deleteNode(HeronNode heronNode) {
+      HeronNode temp = head;
+      boolean flag = false;
+      while(true) {
+         if (temp.next == null) {
+            break;
+         }
+         if (temp.next.no == heronNode.no) {
+            flag = true;
+            break;
+         }
+         temp = temp.next;
+      }
+
+      if(flag) {
+         temp.next = temp.next.next;
+      } else {
+         System.out.printf("没有找到要删除的编号%d", heronNode.no);
+      }
+   }
+
+   /**
+    * 获取链表的有效节点个数
+    * @param head 传入的头节点
+    * @return 链表中有效的节点个数
+    */
+    public static int getLength(HeronNode head) {
+        if (head.next == null) {
+           // 带头节点的空链表
+           return 0;
+        }
+        int length = 0;
+        // 不统计头节点
+        HeronNode currentNode = head.next;
+        while(currentNode != null) {
+           length++;
+           currentNode = currentNode.next;
+        }
+        return length;
+    }
+
+   /**
+    * 反转链表
+    * @return 反转后的链表头节点
+    */
+   public HeronNode reverseLinkedList() {
+       // 先将链表反转
+       HeronNode lastNode = null;
+       HeronNode newHeadNode = head.next;
+       HeronNode temp = null;
+       while(newHeadNode != null) {
+          temp = newHeadNode;
+          newHeadNode = newHeadNode.next;
+          temp.next = lastNode;
+          lastNode = temp;
+       }
+       head.next = lastNode;
+       return head;
+   }
+
+   /**
+    * 查找链表倒数第k个节点
+    * @param head 链表头节点
+    * @param k 位置
+    * @return 位置下的节点
+    */
+   public static HeronNode findLastIndexNode(HeronNode head, int k) {
+      if (head.next == null) {
+          return null;
+      }
+      // 有效链表的长度
+      int length = getLength(head);
+      if (k <= 0 || k > length) {
+           return null;
+      }
+      // 得到需要移动的次数
+      int sportCount = length - k;
+      HeronNode temp = head.next;
+      for (int i = 0; i < sportCount; i++) {
+         temp = temp.next;
+      }
+      return temp;
    }
 }
