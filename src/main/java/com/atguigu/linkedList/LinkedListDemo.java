@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.Stack;
+
 /**
  * @Author 汪玉龙
  * @title 实现单链表的添加、删除、修改、查询操作
@@ -18,13 +20,18 @@ public class LinkedListDemo {
       HeronNode node3 = new HeronNode(3, "吴用", "智多星",null);
       HeronNode node4 = new HeronNode(4, "林冲", "豹子头",null);
 
-      /*linkedList.addNode(node1);
+      linkedList.addNode(node1);
       linkedList.addNode(node2);
       linkedList.addNode(node4);
       linkedList.addNode(node3);
+      linkedList.list();
+      System.out.println();
+      /*HeronNode node = linkedList.reverseLinkedList(linkedList.getHeadNode());
       linkedList.list();*/
-
-      linkedList.addNodeByOrder(node3);
+      linkedList.reversePrint(linkedList.getHeadNode());
+      System.out.println();
+      linkedList.list();
+      /*linkedList.addNodeByOrder(node3);
       linkedList.addNodeByOrder(node2);
       linkedList.addNodeByOrder(node4);
       linkedList.addNodeByOrder(node1);
@@ -34,14 +41,14 @@ public class LinkedListDemo {
       HeronNode deleteNode2 = HeronNode.builder().no(2).build();
       HeronNode deleteNode3 = HeronNode.builder().no(3).build();
       HeronNode deleteNode4 = HeronNode.builder().no(4).build();
-      HeronNode deleteNode5 = HeronNode.builder().no(5).build();
+      HeronNode deleteNode5 = HeronNode.builder().no(5).build();*/
       /*linkedList.deleteNode(deleteNode1);
       linkedList.deleteNode(deleteNode2);
       linkedList.deleteNode(deleteNode3);
       linkedList.list();*/
-      System.out.println(SingleLinkedList.getLength(linkedList.getHeadNode()));
+      /*System.out.println(SingleLinkedList.getLength(linkedList.getHeadNode()));
       HeronNode lastIndexNode = SingleLinkedList.findLastIndexNode(linkedList.getHeadNode(), 1);
-      System.out.println(lastIndexNode);
+      System.out.println(lastIndexNode);*/
 
    }
 
@@ -235,5 +242,50 @@ class SingleLinkedList {
          temp = temp.next;
       }
       return temp;
+   }
+
+   /**
+    * 将单链表反转 改变链表的结构
+    * @param heronNode 链表头节点
+    * @return  反转后的链表头节点
+    */
+   public HeronNode reverseLinkedList(HeronNode heronNode) {
+      // 只有一个元素,或者没有元素直接返回本身就可以
+      if (heronNode == null || heronNode.next == null) {
+         return heronNode;
+      }
+      // 新建一个新的节点为头节点
+      HeronNode newHead = new HeronNode(0,"","",null);
+      HeronNode current = heronNode.next;
+      HeronNode next = null;
+      while (current != null) {
+         // 先将下一个节点保存起来
+         next = current.next;
+         current.next = newHead.next;
+         newHead.next = current;
+         current = next;
+      }
+      heronNode.next = newHead.next;
+      return heronNode;
+   }
+
+   /**
+    * 从尾到头打印单链表 注意事项:不能使用反转链表, 反转后链表结构发生变化, 使用栈
+    * @param head 链表头节点
+    */
+   public void reversePrint(HeronNode head) {
+      if (head == null || head.next == null) {
+         return;
+      }
+      Stack<HeronNode> stack = new Stack<HeronNode>();
+      HeronNode current = head.next;
+      while (current != null) {
+         stack.push(current);
+         current = current.next;
+      }
+
+      while (!stack.isEmpty()) {
+         System.out.println(stack.pop());
+      }
    }
 }
