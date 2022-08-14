@@ -8,22 +8,22 @@ package com.atguigu.queue;
 public class CircleArrayQueueDemo {
 
     public static void main(String[] args) {
-          CircleArrayQueue queue = new CircleArrayQueue(4);
-                   queue.push(1);
-                   queue.push(2);
-                   queue.push(3);
-                   queue.showQueue();
+        CircleArrayQueue queue = new CircleArrayQueue(4);
+        queue.push(1);
+        queue.push(2);
+        queue.push(3);
+        queue.showQueue();
 
-          CircleArrayQueue queue1 = new CircleArrayQueue(4);
-                  queue1.push(1);
-                  queue1.push(2);
-                  queue1.push(3);
-                  System.out.println(queue1.pop());
-                  queue1.push(4);
-                  System.out.println(queue1.pop());
-                  System.out.println(queue1.pop());
-                 System.out.println(queue1.pop());
-                  queue.showQueue();
+        CircleArrayQueue queue1 = new CircleArrayQueue(4);
+        queue1.push(1);
+        queue1.push(2);
+        queue1.push(3);
+        System.out.println(queue1.pop());
+        queue1.push(4);
+        System.out.println(queue1.pop());
+        System.out.println(queue1.pop());
+        System.out.println(queue1.pop());
+        queue.showQueue();
     }
 }
 
@@ -55,6 +55,7 @@ class CircleArrayQueue {
 
     /**
      * 入队操作
+     *
      * @param data 入队列数据
      */
     public void push(int data) {
@@ -70,6 +71,7 @@ class CircleArrayQueue {
 
     /**
      * 队列是否已经满了
+     *
      * @return true 满了 false没有满
      */
     private boolean isFullQueue() {
@@ -93,6 +95,7 @@ class CircleArrayQueue {
 
     /**
      * 队列是否为空
+     *
      * @return true 空 false 非空
      */
     private boolean isEmptyQueue() {
@@ -101,6 +104,7 @@ class CircleArrayQueue {
 
     /**
      * 返回队列的头部元素
+     *
      * @return 队头元素
      */
     public int top() {

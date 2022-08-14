@@ -2,7 +2,7 @@ package com.atguigu.stack.array;
 
 /**
  * @Author 汪玉龙
- * @title  使用数组实现栈
+ * @title 使用数组实现栈
  * @Date 2021/3/14 18:45
  */
 public class ArrayStackDemo {
@@ -30,9 +30,10 @@ class ArrayStack {
 
     /**
      * 使用构造方法初始化栈
+     *
      * @param size 栈的大小
      */
-    public ArrayStack (Integer size) {
+    public ArrayStack(Integer size) {
         this.size = size;
         this.arrayStack = new Integer[size];
         this.top = -1;
@@ -40,9 +41,10 @@ class ArrayStack {
 
     /**
      * 判断栈是否已满
+     *
      * @return true(满了)  false (没满)
      */
-    public boolean isFull () {
+    public boolean isFull() {
         return top == size - 1;
     }
 
@@ -56,7 +58,7 @@ class ArrayStack {
     /**
      * 入栈
      */
-    public void push (Integer data) {
+    public void push(Integer data) {
         if (isFull()) {
             throw new RuntimeException("栈已经满了,无法入栈");
         }
@@ -65,14 +67,15 @@ class ArrayStack {
 
     /**
      * 出栈
+     *
      * @return 弹出返回栈顶
      */
-    public Integer pop () {
+    public Integer pop() {
         if (isEmpty()) {
             throw new RuntimeException("栈为空,无法进行出栈操作");
         }
 
-       return arrayStack[top--];
+        return arrayStack[top--];
     }
 
     /**
@@ -84,7 +87,7 @@ class ArrayStack {
         }
 
         for (int i = top; i >= 0; i--) {
-            System.out.printf("arrayStack[%d] = %d\n" ,i ,arrayStack[i]);
+            System.out.printf("arrayStack[%d] = %d\n", i, arrayStack[i]);
         }
     }
 }

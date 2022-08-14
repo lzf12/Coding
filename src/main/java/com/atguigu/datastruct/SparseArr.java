@@ -12,17 +12,17 @@ public class SparseArr {
     /**
      * 初始化二维数组
      * <p>
-     *     0 0 0 0 0 0 0 0 0 0 0
-     *     0 0 1 0 0 0 0 0 0 0 0
-     *     0 0 0 0 2 0 0 0 0 0 0
-     *     0 0 0 0 0 0 0 0 0 0 0
-     *     0 0 0 0 0 0 0 0 0 0 0
-     *     0 0 0 0 0 0 0 0 0 0 0
-     *     0 0 0 0 0 0 0 0 0 0 0
-     *     0 0 0 0 0 0 0 0 0 0 0
-     *     0 0 0 0 0 0 0 0 0 0 0
-     *     0 0 0 0 0 0 0 0 0 0 0
-     *     0 0 0 0 0 0 0 0 0 0 0
+     * 0 0 0 0 0 0 0 0 0 0 0
+     * 0 0 1 0 0 0 0 0 0 0 0
+     * 0 0 0 0 2 0 0 0 0 0 0
+     * 0 0 0 0 0 0 0 0 0 0 0
+     * 0 0 0 0 0 0 0 0 0 0 0
+     * 0 0 0 0 0 0 0 0 0 0 0
+     * 0 0 0 0 0 0 0 0 0 0 0
+     * 0 0 0 0 0 0 0 0 0 0 0
+     * 0 0 0 0 0 0 0 0 0 0 0
+     * 0 0 0 0 0 0 0 0 0 0 0
+     * 0 0 0 0 0 0 0 0 0 0 0
      * </p>
      */
     public static void main(String[] args) {
@@ -32,17 +32,17 @@ public class SparseArr {
         arr[2][4] = 2;
         // 打印原数组
         System.out.println("原数组为:");
-        for(int[]  row : arr) {
-            for(int item : row) {
-                System.out.printf("%d\t",item);
+        for (int[] row : arr) {
+            for (int item : row) {
+                System.out.printf("%d\t", item);
             }
             System.out.println();
         }
 
         // 得到非0的数据数
         int sum = 0;
-        for(int[]  row : arr) {
-            for(int item : row) {
+        for (int[] row : arr) {
+            for (int item : row) {
                 if (item != 0) {
                     sum++;
                 }
@@ -75,7 +75,7 @@ public class SparseArr {
             System.out.println();
         }
         // 利用IO流写到磁盘上面去
-        try{
+        try {
             System.out.println("存档功能开始: ");
             File file = new File("D:\\sparse.data");
             FileOutputStream fos = new FileOutputStream(file);
@@ -83,7 +83,7 @@ public class SparseArr {
             BufferedWriter bw = new BufferedWriter(outputStreamWriter);
             for (int[] ints : sparseArr) {
                 // 存档
-                bw.write(ints[0]+","+ints[1]+","+ints[2]);
+                bw.write(ints[0] + "," + ints[1] + "," + ints[2]);
                 bw.newLine();
                 bw.flush();
             }
@@ -103,7 +103,7 @@ public class SparseArr {
                 // 恢复成稀疏数组
                 for (String data : split) {
                     recoverArr[left][right++] = Integer.parseInt(data);
-                    System.out.println(left+","+right);
+                    System.out.println(left + "," + right);
                 }
                 left++;
                 right = 0;
@@ -119,14 +119,14 @@ public class SparseArr {
                 oldArr[recoverArr[index][0]][recoverArr[index][1]] = recoverArr[index][2];
             }
             // 得到的原始二维数组
-            for(int[]  row : oldArr) {
-                for(int item : row) {
-                    System.out.printf("%d\t",item);
+            for (int[] row : oldArr) {
+                for (int item : row) {
+                    System.out.printf("%d\t", item);
                 }
                 System.out.println();
             }
         } catch (Exception e) {
-             e.printStackTrace();
+            e.printStackTrace();
         }
     }
 }

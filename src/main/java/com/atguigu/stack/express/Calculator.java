@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * @Author 汪玉龙
- * @title  计算一个表达式
+ * @title 计算一个表达式
  * @Date 2021/4/5 14:21
  */
 public class Calculator {
@@ -33,10 +33,10 @@ public class Calculator {
                 // 符号栈不为空的话, 判断符号的优先级是否高于符号栈里面的栈顶元素
                 if (!symbolStack.isEmpty()) {
                     if (symbolStack.getPriority(ch) <= symbolStack.getPriority(symbolStack.peek())) {
-                         // 如果优先级小于等于栈里面的栈顶元素, 那么直接从数栈弹出两个数然后进行运算
-                         oper = symbolStack.pop();
-                         num1 = numberStack.pop();
-                         num2 = numberStack.pop();
+                        // 如果优先级小于等于栈里面的栈顶元素, 那么直接从数栈弹出两个数然后进行运算
+                        oper = symbolStack.pop();
+                        num1 = numberStack.pop();
+                        num2 = numberStack.pop();
                         // 进行运算
                         int result = symbolStack.operation(oper, num1, num2);
                         // 将结果入数栈
@@ -68,7 +68,6 @@ public class Calculator {
                         splicingStr.delete(0, splicingStr.length());
                     }
                 }
-
 
 
             }
@@ -105,9 +104,10 @@ class ArrayStack2 {
 
     /**
      * 使用构造方法初始化栈
+     *
      * @param size 栈的大小
      */
-    public ArrayStack2 (int size) {
+    public ArrayStack2(int size) {
         this.size = size;
         this.arrayStack = new int[size];
         this.top = -1;
@@ -115,9 +115,10 @@ class ArrayStack2 {
 
     /**
      * 判断栈是否已满
+     *
      * @return true(满了)  false (没满)
      */
-    public boolean isFull () {
+    public boolean isFull() {
         return top == size - 1;
     }
 
@@ -131,7 +132,7 @@ class ArrayStack2 {
     /**
      * 入栈
      */
-    public void push (int data) {
+    public void push(int data) {
         if (isFull()) {
             throw new RuntimeException("栈已经满了,无法入栈");
         }
@@ -140,9 +141,10 @@ class ArrayStack2 {
 
     /**
      * 出栈
+     *
      * @return 弹出返回栈顶
      */
-    public int pop () {
+    public int pop() {
         if (isEmpty()) {
             throw new RuntimeException("栈为空,无法进行出栈操作");
         }
@@ -159,7 +161,7 @@ class ArrayStack2 {
         }
 
         for (int i = top; i >= 0; i--) {
-            System.out.printf("arrayStack[%d] = %d\n" ,i ,arrayStack[i]);
+            System.out.printf("arrayStack[%d] = %d\n", i, arrayStack[i]);
         }
     }
 
@@ -183,7 +185,7 @@ class ArrayStack2 {
     /**
      * 判断是否是符号
      */
-    public  boolean isOper(char ch) {
+    public boolean isOper(char ch) {
         if ('*' == ch || '+' == ch || '-' == ch || '/' == ch) {
             return true;
         }
@@ -193,21 +195,21 @@ class ArrayStack2 {
     /**
      * 根据符号将两个数进行运算
      */
-    public int operation (int symbol, int num1, int num2) {
+    public int operation(int symbol, int num1, int num2) {
         // 用于存放结果
         int result = 0;
         switch (symbol) {
             case '*':
-                result =  num1 * num2;
+                result = num1 * num2;
                 break;
             case '/':
-                result =  num1 / num2;
+                result = num1 / num2;
                 break;
             case '-':
-                result =  num2 - num1;
+                result = num2 - num1;
                 break;
             case '+':
-                result =  num1 + num2;
+                result = num1 + num2;
                 break;
             default:
                 break;

@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * @Author 汪玉龙
- * @title  使用链表实现一个栈 (逆序构建单链表)
+ * @title 使用链表实现一个栈 (逆序构建单链表)
  * @Date 2021/3/14 19:14
  */
 public class LinkedStackDemo {
@@ -24,7 +24,6 @@ public class LinkedStackDemo {
 }
 
 
-
 class LinkedStack {
     // 初始化一个头节点
     private Node head = new Node(-1);
@@ -33,7 +32,7 @@ class LinkedStack {
     // 栈顶指针
     private Node top;
 
-    public LinkedStack (Integer size) {
+    public LinkedStack(Integer size) {
         this.size = size;
         this.top = head;
     }
@@ -41,14 +40,14 @@ class LinkedStack {
     /**
      * 判断栈是否为空
      */
-    public boolean isEmpty () {
+    public boolean isEmpty() {
         return top == head;
     }
 
     /**
      * 判断栈是否已经满了
      */
-    public boolean isFull () {
+    public boolean isFull() {
         // 获取栈大小的方法
         Integer currentStackSize = size();
         return currentStackSize.equals(size);
@@ -56,9 +55,10 @@ class LinkedStack {
 
     /**
      * 求栈的大小
+     *
      * @return 栈的大小
      */
-    public Integer size () {
+    public Integer size() {
         if (isEmpty()) {
             return 0;
         }
@@ -76,7 +76,7 @@ class LinkedStack {
     /**
      * 入栈操作
      */
-    public void push (Integer no) {
+    public void push(Integer no) {
         if (isFull()) {
             throw new RuntimeException("栈满了");
         }
@@ -90,7 +90,7 @@ class LinkedStack {
     /**
      * 出栈操作
      */
-    public Integer pop () {
+    public Integer pop() {
         if (isEmpty()) {
             throw new RuntimeException("栈为空,不能进行出栈");
         }
@@ -103,7 +103,7 @@ class LinkedStack {
     /**
      * 遍历单链表
      */
-    public void show () {
+    public void show() {
         if (isEmpty()) {
             throw new RuntimeException("栈为空,无法遍历");
         }
@@ -125,7 +125,7 @@ class Node {
     // 指向下一个节点的指针
     private Node next;
 
-    public Node (Integer no) {
+    public Node(Integer no) {
         this.no = no;
     }
 }
