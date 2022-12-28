@@ -1,0 +1,12 @@
+server:
+  port: 8989
+  servlet:
+    context-path: /coding
+spring:
+  main:
+    host: smtp.163.com
+    username: w18800434802@163.com
+    password: VHXZHNESBVAKZCZG
+    default-encoding: utf-8
+
+
